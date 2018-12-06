@@ -1,0 +1,43 @@
+family	total number	HVG	LVG	random	family_short	status
+AP2-EREBP	53	0	0	0	AP2-EREBP	less
+NAC	49	14	0	0	NAC	same
+MYB	29	1	0	0	MYB	same
+bZIP	25	12	0	0	bZIP	more
+WRKY	23	3	0	0	WRKY	same
+MYB-related	21	7	0	0	MYB-related	same
+C2C2-DOF	18	0	0	1	C2C2-DOF	same
+C2H2	10	0	0	0	 	same
+G2-like	10	0	2	0	 	same
+HB	8	3	0	0	HB	same
+TCP	8	0	0	0	 	same
+Trihelix	8	1	0	0	 	same
+bHLH	7	1	0	0	 	same
+HSF	6	0	1	0	 	same
+Homeobox	6	3	0	0	Homeobox	same
+LOB-AS2	6	0	0	0	 	same
+ZF-HD	5	4	0	0	ZF-HD	more
+NA	5	0	0	0	 	same
+ABI3-VP1	4	1	0	0	 	same
+BZR	4	3	0	0	 	same
+C2C2-GATA	4	0	0	0	 	same
+SBP	4	2	0	0	SBP	same
+MADS	3	0	0	0	 	same
+CPP	3	0	0	0	 	same
+ARF	2	0	0	0	 	same
+C3H	2	0	0	0	 	same
+Orphan	2	0	0	0	 	same
+RWP-RK	2	1	0	0	 	same
+CAMTA	2	0	0	0	 	same
+E2F-DP	2	0	0	0	 	same
+BBR/BPC	1	0	0	0	 	same
+GRF	1	0	0	0	 	same
+GeBP	1	0	0	0	 	same
+ND	1	0	0	0	 	same
+RAV	1	0	0	0	 	same
+S1fa-like	1	0	1	0	 	same
+BES1	1	1	0	0	 	same
+EIL	1	0	0	0	 	same
+FAR1	1	0	0	0	 	same
+REM	1	1	0	0	 	same
+mTERF	1	0	0	0	 	same
+zf-GRF	1	0	0	0	 	same

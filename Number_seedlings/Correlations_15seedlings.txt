@@ -1,0 +1,17 @@
+"position"	"less_1seedling"	"cor_less_1seedling"
+1	"BioVar_less_seedlings1"	0.993452430110959
+2	"BioVar_less_seedlings2"	0.993078547261861
+3	"BioVar_less_seedlings3"	0.991763147658084
+4	"BioVar_less_seedlings4"	0.994118339143842
+5	"BioVar_less_seedlings5"	0.992999259085444
+6	"BioVar_less_seedlings6"	0.98995659808481
+7	"BioVar_less_seedlings7"	0.975111252501842
+8	"BioVar_less_seedlings8"	0.987382885678086
+9	"BioVar_less_seedlings9"	0.988541021240459
+10	"BioVar_less_seedlings10"	0.989160531913052
+11	"BioVar_less_seedlings11"	0.99178617041657
+12	"BioVar_less_seedlings12"	0.977932902536976
+13	"BioVar_less_seedlings13"	0.975220112870309
+14	"BioVar_less_seedlings14"	0.991361605871159
+15	"BioVar_less_seedlings15"	0.983654352438156
+16	"BioVar_less_seedlings16"	0.993652428499847

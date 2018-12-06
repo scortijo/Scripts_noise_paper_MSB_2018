@@ -1,0 +1,46 @@
+#!/bin/bash
+foldername=$1
+filename=$2
+#$-N mapping
+
+
+# qsub $HOME/20160831_smxl7_rna-seq/fastq_concat.sh
+
+# Change to the right directory (the one that contains all the folders you need to be searched)
+
+cd ~/"$foldername"
+
+
+cufflinks --output-dir ~/Big_genes_cutted/"$filename"/ \
+--GTF /home/sc804/Reference_Genome/Arabidopsis_thaliana.TAIR10.27_with_ERCC92_cutGenes.gtf \
+--num-threads 10 \
+--frag-bias-correct /home/sc804/Reference_Genome/Arabidopsis_thaliana_Ensemble_TAIR10_with_ERCC92/Arabidopsis_thaliana.TAIR10.27.dna.genome_with_ERCC92.fa \
+--multi-read-correct \
+--library-type fr-unstranded \
+"$filename"/"$filename"_trimmo_paired_2_10_5_1_tophat_ensembl_TAIR10_nomixed_unstranded_sorted_rmdup_picard.bam
+
+# obtain raw reads using HTseq-count
+/home/hugot/software/anaconda2/2.4.0/bin/samtools sort -n ~/Big_genes_cutted/"$filename"_trimmo_paired_2_10_5_1_tophat_ensembl_TAIR10_nomixed_unstranded_sorted_rmdup_picard.bam \
+-o ~/Big_genes_cutted/"$filename"_trimmo_paired_2_10_5_1_tophat_ensembl_TAIR10_nomixed_unstranded_sorted_rmdup_picard_name_sorted 2>> run_"$filename"_unstranded.log
+
+/home/hugot/software/anaconda2/2.4.0/bin/htseq-count -r name -s no -f bam -t exon -i gene_id \
+~/Big_genes_cutted/"$filename”/"$filename"_trimmo_paired_2_10_5_1_tophat_ensembl_TAIR10_nomixed_unstranded_sorted_rmdup_picard_name_sorted.bam \
+/home/sc804/Reference_Genome/Arabidopsis_thaliana_Ensemble_TAIR10_with_ERCC92/Arabidopsis_thaliana.TAIR10.27_with_ERCC92_cutGenes.gtf \
+> ~/Big_genes_cutted/"$filename”/"$filename"_trimmo_paired_2_10_5_1_tophat_ensembl_TAIR10_nomixed_unstranded_sorted_rmdup_picard_name_sorted_htseq_count.ct
+
+# combine FPKM/TPM/RAW
+
+cp "$filename"/genes.fpkm_tracking .
+cut -f1,4,7,10 genes.fpkm_tracking > genes.fpkm_tracking_fpkm
+cp "$filename"/"$filename"_trimmo_paired_2_10_5_1_tophat_ensembl_TAIR10_nomixed_unstranded_sorted_rmdup_picard_name_sorted_htseq_count.ct genes.raw
+
+Rscript -e 'genes.fpkm <- read.table("genes.fpkm_tracking_fpkm", sep="\t", quote="", header=T, colClasses = c(rep("character", 3), "numeric"))' \
+-e 'genes.fpkm$TPM <-genes.fpkm$FPKM/sum(genes.fpkm$FPKM)*10^6' \
+-e 'genes.raw <- read.table("genes.raw", sep="\t", quote="", header=F, colClasses = c("character", "numeric"))' \
+-e 'names(genes.raw) <- c("tracking_id", "Raw")' \
+-e 'genes.fpkm.raw <- merge(genes.fpkm, genes.raw, by = "tracking_id")' \
+-e 'write.table(genes.fpkm.raw, "genes_fpkm_tpm_raw.txt", sep="\t", quote=F, row.names=F)' 
+
+mv genes_fpkm_tpm_raw.txt "$filename"_trimmo_paired_2_10_5_1_tophat_ensembl_TAIR10_nomixed_unstranded_sorted_rmdup_picard_combined_read_cutGenes.txt
+
+
